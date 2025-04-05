@@ -1,0 +1,39 @@
+<svg width="251" height="250" viewBox="0 0 251 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_118_13)">
+        <rect x="27.3198" y="88.3568" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="55.3243" y="111.055" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="27.3199" y="133.753" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="83.3289" y="133.753" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="55.3243" y="156.452" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="27.3199" y="179.15" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="111.333" y="156.452" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="83.329" y="179.15" width="56.0089" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="139.338" y="179.15" width="28.0045" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="27.3199" y="156.452" width="28.0043" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="27.3198" y="111.055" width="28.0044" height="22.6982" rx="3" fill="white"
+            stroke="black" stroke-width="5" />
+        <rect x="197.83" y="146.978" width="11.3792" height="43.1343" rx="5.5"
+            transform="rotate(-32.4234 197.83 146.978)" fill="white" stroke="black" stroke-width="5" />
+        <path
+            d="M206.166 100.81C210.311 107.337 212.009 113.195 210.857 118.609C209.706 124.015 205.573 129.634 196.56 135.359C186.939 141.47 180.128 142.777 174.941 141.463C169.725 140.14 165.407 135.986 161.204 129.369C159.243 126.282 157.142 120.962 155.241 114.442C153.357 107.98 151.726 100.536 150.635 93.335C149.542 86.1161 149.006 79.2402 149.269 73.8862C149.401 71.2021 149.729 69.0089 150.232 67.3847C150.755 65.6958 151.35 64.9997 151.719 64.765C152.089 64.5302 152.972 64.2879 154.723 64.5323C156.407 64.7673 158.531 65.4027 161.017 66.4243C165.975 68.4621 171.971 71.8692 178.041 75.9274C184.095 79.9756 190.14 84.6158 195.188 89.0679C200.282 93.5598 204.205 97.7226 206.166 100.81Z"
+            fill="white" stroke="black" stroke-width="5" />
+        <rect x="189.411" y="129.486" width="5.77073" height="18.5008" rx="2.88537"
+            transform="rotate(-32.4234 189.411 129.486)" fill="white" stroke="black"
+            stroke-width="4" />
+    </g>
+    <defs>
+        <clipPath id="clip0_118_13">
+            <rect width="250" height="250" fill="white" transform="translate(0.787842)" />
+        </clipPath>
+    </defs>
+</svg>

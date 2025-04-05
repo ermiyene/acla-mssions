@@ -1,0 +1,180 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum USER_ROLE {
+  ADMIN
+}
+
+enum NOTIFICATION_TYPE {
+  THANK_YOU_FOR_PLEDGE
+  REMIND_TO_CONFIRM_TRANSFER
+  REMIND_TO_HAND_OVER_ITEMS
+  THANK_YOU_FOR_CONTRIBUTION
+  PHONE_VERIFICATION
+}
+
+enum CURRENCY {
+  USD
+  ETB
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  email     String    @unique
+  name      String
+  role      USER_ROLE
+  password  String
+}
+
+model Pledge {
+  id                   String                @id @default(uuid())
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deletedAt            DateTime?
+  name                 String?
+  phone                String?
+  email                String?
+  monetaryContribution MonetaryContribution?
+  inKindContribution   InKindContribution?
+  phoneVerifications   PhoneVerification[]
+  emailVerifications   EmailVerification[]
+  notifications        Notification[]
+}
+
+model PhoneVerification {
+  id               Int       @id @default(autoincrement())
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
+  code             String    @default(cuid())
+  verificationDate DateTime?
+  pledgeId         String    
+  phone            String
+  pledge           Pledge    @relation(fields: [pledgeId], references: [id])
+}
+
+model EmailVerification {
+  id               Int       @id @default(autoincrement())
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
+  code             String    @default(cuid())
+  verificationDate DateTime?
+  pledgeId         String    
+  email            String
+  pledge           Pledge    @relation(fields: [pledgeId], references: [id])
+}
+
+model Notification {
+  id        String            @id @default(uuid())
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  deletedAt DateTime?
+  message   String
+  type      NOTIFICATION_TYPE
+  pledgeId  String
+  pledge    Pledge            @relation(fields: [pledgeId], references: [id])
+  sentAt    DateTime?
+}
+
+model MonetaryContribution {
+  id                   String                @id @default(uuid())
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deletedAt            DateTime?
+  amount               Float
+  transferMethodId     String
+  transferMethod       TransferMethod        @relation(fields: [transferMethodId], references: [id])
+  pledgeId             String                @unique
+  pledge               Pledge                @relation(fields: [pledgeId], references: [id])
+  transferConfirmations TransferConfirmation[]
+  currency              CURRENCY            @default(ETB)
+}
+
+model InKindContribution {
+  id                   String                @id @default(uuid())
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deletedAt            DateTime?
+  pledgeId             String                @unique
+  pledge               Pledge                @relation(fields: [pledgeId], references: [id])
+  inKindItemSelections InKindItemSelection[]
+}
+
+model InKindItemSelection {
+  id                   String             @id @default(uuid())
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  deletedAt            DateTime?
+  inKindItemId         String
+  inKindItem           InKindItem         @relation(fields: [inKindItemId], references: [id])
+  amount               Float
+  handOverDate         DateTime?
+  inKindContributionId String
+  inKindContribution   InKindContribution @relation(fields: [inKindContributionId], references: [id])
+}
+
+model InKindItem {
+  id                   String                @id @default(uuid())
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  deletedAt            DateTime?
+  name                 String
+  unit                 String
+  maxQuantity          Float?
+  currentQuantity      Float?
+  isHidden             Boolean?  
+  category             String
+  parentCategory       String
+  inKindItemSelections InKindItemSelection[]
+}
+
+model TransferMethod {
+  id                    String                 @id @default(uuid())
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  deletedAt             DateTime?
+  name                  String
+  accountNumber         String
+  accountHolderName     String?
+  swiftCode             String?
+  monetaryContributions MonetaryContribution[]
+  currency              CURRENCY            @default(ETB)
+}
+
+model TransferConfirmation {
+  id                     String               @id @default(uuid())
+  createdAt              DateTime             @default(now())
+  updatedAt              DateTime             @updatedAt
+  deletedAt              DateTime?
+  adminConfirmationDate  DateTime?
+  monetaryContributionId String               
+  monetaryContribution   MonetaryContribution @relation(fields: [monetaryContributionId], references: [id])
+  screenShotUrl         String?
+  screenShotKey         String
+  screenShotRaw         Json?
+}
+
+
+model Target{
+  id                     String               @id @default(uuid())
+  createdAt              DateTime             @default(now())
+  updatedAt              DateTime             @updatedAt
+  deletedAt              DateTime?
+  amount                 Int
+}

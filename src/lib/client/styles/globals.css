@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 25%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 25%;
+
+    --border: 0 0% 92%;
+    --input: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 43 100% 63%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 25%;
+    --secondary-foreground: 43 100% 63%;
+
+    --accent: 43 100% 63%;
+    --accent-foreground: 0 0% 25%;
+
+    --destructive: 0 80% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 43 100% 63%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 120 6% 22%;
+    --foreground: 120 0% 92%;
+
+    --muted: 120 5% 32%;
+    --muted-foreground: 120 15% 85%;
+
+    --accent: 120 7% 38%;
+    --accent-foreground: 120 40% 98%;
+
+    --popover: 120 5% 28%;
+    --popover-foreground: 120 0% 92%;
+
+    --border: 120 6% 38%;
+    --input: 120 6% 34%;
+
+    --card: 120 5% 28%;
+    --card-foreground: 120 0% 92%;
+
+    --primary: 120 40% 94%;
+    --primary-foreground: 222.2 47.4% 8%;
+
+    --secondary: 120 6% 34%;
+    --secondary-foreground: 120 40% 94%;
+
+    --destructive: 10 63% 45%;
+    --destructive-foreground: 120 40% 94%;
+
+    --ring: 120 6% 34%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground h-screen w-screen;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  /* 
+  @media (prefers-color-scheme: dark) {
+    body {
+      @apply dark;
+    }
+  } */
+
+  #__next {
+    @apply h-full;
+  }
+}
+
+html {
+  @apply antialiased;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Loading bar with gradient and animation */
+.loading-bar {
+  width: 100%;
+  height: 1px;
+  background: hsl(var(--secondary-foreground));
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    hsl(var(--secondary-foreground)) 0%,
+    hsl(var(--secondary)) 5%,
+    hsl(var(--secondary)) 95%,
+    hsl(var(--secondary-foreground)) 100%
+  );
+  animation: swipe 1s infinite;
+}
+
+/* Hide scrollbar for modern browsers */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and WebKit-based browsers */
+}
+
+@keyframes swipe {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
