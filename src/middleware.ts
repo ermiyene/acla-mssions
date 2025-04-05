@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
 }
 
 async function getUser() {
-  const token = cookies().get("accessToken")?.value;
+  const token = (await cookies()).get("accessToken")?.value;
 
   if (!token) {
     return null;
